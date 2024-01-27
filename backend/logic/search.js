@@ -25,7 +25,7 @@ function getPostForFriends(user) {
   //get list of users friends
   let friends = axios.get("http://localhost:4000/users/" + user).then(
     (res) => {
-      console.log(res.data.friends);
+      console.log("the users friends are " + res.data.friends);
       return res.data.friends;
     },
     (err) => {

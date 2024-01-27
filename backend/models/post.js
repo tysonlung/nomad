@@ -6,6 +6,8 @@ const postSchema = new Schema(
     description: { type: String, required: false },
     imagelink: { type: String, required: false },
     likes: { type: Number, required: false },
+    createdAt: { type: Date, required: false , default: Date.now},
+    
   },
   {
     timestamps: true,
