@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Camera } from 'expo-camera';
 import { Button, FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Circle from "react-native-vector-icons/Entypo"
+import Nav from './Nav'; // Import the Nav component
 
 export default function CameraComponent({ navigation, route }) {
   const username = "Temp"; // Assuming you receive the username as a parameter
@@ -61,16 +62,16 @@ export default function CameraComponent({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.buttonContainerTop}>
+      {/* <View style={styles.buttonContainerTop}>
         <Button title="Go to Explore" onPress={goToExplore} />
-      </View>
+      </View> */}
       <Camera style={styles.camera} type={type} ref={cameraRef}>
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
             <Text style={styles.text}>Flip Camera</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.circleButton} onPress={takePicture}>
-          <Circle name="circle" size={65} color="white" />
+            <Circle name="circle" size={65} color="white" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={exitCamera}>
             <Text style={styles.text}>Exit Camera</Text>
@@ -86,12 +87,13 @@ export default function CameraComponent({ navigation, route }) {
             renderItem={({ item }) => (
               <View style={styles.imageItem}>
                 <Image source={{ uri: item.uri }} style={styles.capturedImage} />
-                {/* <Text style={styles.imageText}>{item.filename}</Text> */}
               </View>
             )}
           />
         </View>
       )}
+      {/* Include the Nav component in place of the "Go to Explore" button */}
+      <Nav navigation={navigation} />
     </View>
   );
 }

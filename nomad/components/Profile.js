@@ -1,12 +1,31 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
+import Nav from "./Nav";
 
 export default function Profile({ route }) {
+  // Check if route.params is defined
+  if (!route.params) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.text}>Error: Route parameters not available.</Text>
+      </View>
+    );
+  }
+
   const { capturedImages } = route.params;
+
+  // Check if capturedImages is defined
+  if (!capturedImages) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.text}>Error: Captured Images not available.</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
-      <Text style = {styles.text}> This is your profile page{"\n"} </Text>
+      <Text style={styles.text}>This is your profile page{"\n"}</Text>
 
       <Text style={styles.text}>Captured Images:</Text>
       <View>

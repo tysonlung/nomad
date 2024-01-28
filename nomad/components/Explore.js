@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
-
+import Nav from './Nav';
 
 export default function Explore({ navigation }) {
   return (
@@ -10,6 +10,7 @@ export default function Explore({ navigation }) {
         title="Go to Camera"
         onPress={() => navigation.navigate('Camera')}
       />
+    <Nav navigation={navigation}/>
     </View>
   );
 }
