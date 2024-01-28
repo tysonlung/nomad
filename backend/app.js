@@ -14,7 +14,7 @@ app.use((req, res, next) => {
 app.get("/", (req, res) => {
   console.log("request sent");
   res.send("Hello World!");
-  
+
   uploadImage("tempUser", "india", "05", "2024", "./images/test.png");
 });
 //get all users
@@ -75,6 +75,24 @@ app.put("/users/:userName/addFriend/:friend", (req, res) => {
 
 // routes for POSTS
 //get all posts
+app.get("/posts", (req, res) => {
+  Post.find()
+    .then((posts) => res.json(posts))
+    .catch((error) => res.status(400).json("Error: " + error));
+});
+//adding a post
+app.post("/posts", (req, res) => {
+  const user = req.body.user;
+  const description = req.body.description;
+  const imageNameInGCB = req.body.imageNameInGCB;
+  const location = req.body.location;
+  const newPost = new Post({ user, description, imageNameInGCB, location });
+
+  newPost
+    .save()
+    .then(() => res.json("Post added!"))
+    .catch((error) => res.status(400).json("Error: " + error));
+});
 
 mongoose
   .connect(
