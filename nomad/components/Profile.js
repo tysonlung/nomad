@@ -45,13 +45,23 @@ export default function Profile({ navigation }) {
   
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Welcome Back John Doe{"\n"}</Text>
+      {/* Profile Photo and Name */}
+      <View style={styles.profileHeader}>
+        <Image
+          source={require('../assets/John_Doe.png')} // Replace with the actual path
+          style={styles.profileImage}
+        />
+        <Text style={styles.text}>John Doe</Text>
+      </View>
+
+      {/* Posts */}
       <ScrollView>
-        {profilePosts.map((post, index) => (
-          console.log(post),
+        {postList.map((post, index) => (
           <Post key={index} post={post} />
         ))}
       </ScrollView>
+
+      {/* Navigation Bar */}
       <Nav navigation={navigation}/>
     </View>
   );
@@ -62,6 +72,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  profileHeader: {
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  profileImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    marginBottom: 10,
+    marginTop: 5,
   },
   text: {
     fontSize: 24,
