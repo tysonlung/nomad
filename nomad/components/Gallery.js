@@ -28,9 +28,7 @@ export default function Profile({ route }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>This is your gallery page{"\n"}</Text>
-
-      <Text style={styles.text}>Captured Images:</Text>
+      <Text style={styles.text}>Captured Images: {"\n"}</Text>
       <ScrollView>
         {capturedImages.map((image, index) => (
           <View key={index} style={styles.imageItem}>

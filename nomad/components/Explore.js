@@ -38,8 +38,7 @@ export const explorePosts = [
 export default function Explore({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text style = {styles.header}>This is the explore page</Text>
-      <Text style={styles.text}>user submitted landmarks near you{"\n"}</Text>
+      <Text style={styles.header}>User Submitted Landmarks Near You{"\n"}</Text>
       <ScrollView>
         {explorePosts.map((post, index) => (
           console.log(post),
