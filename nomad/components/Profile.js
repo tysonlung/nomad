@@ -56,7 +56,7 @@ export default function Profile({ navigation }) {
 
       {/* Posts */}
       <ScrollView>
-        {postList.map((post, index) => (
+        {profilePosts.map((post, index) => (
           <Post key={index} post={post} />
         ))}
       </ScrollView>
