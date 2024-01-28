@@ -25,6 +25,12 @@ def hello_gcs(cloud_event):
     newFilename =""
     geoCoords = []
     userName = ""
+
+    client = storage.Client()
+    bucket = client.get_bucket("slutty-whores")
+
+    # List objects with the specified prefix (folder)
+    
     for x in splitted:
         if "user" in x:
             userName = x
@@ -37,13 +43,19 @@ def hello_gcs(cloud_event):
         country = get_country_name(geoCoords[0],geoCoords[1])
         loc_time_fold = country + year + month
         if(folder_exists(loc_time_fold)):
-            rename_and_move_file()
+            folder_path = userName + "/" +loc_time_fold
+            blobs = list(bucket.list_blobs(prefix=folder_path))
+            numFiles = len(blobs)
+    # Count the number of objects (files) in the folder
+            rename_and_move_file(name,numFiles)
         else:
             create_folder(userName + "/" + loc_time_fold)
+            rename_and_move_file(name,'1')
     else:
         loc_time_fold = country + year + month
         create_folder(userName +"/")
         create_folder(userName + "/" + loc_time_fold)
+        rename_and_move_file(name,'1')
 
     print(f"Event ID: {event_id}")
     print(f"Event type: {event_type}")
