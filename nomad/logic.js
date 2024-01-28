@@ -16,7 +16,7 @@ async function regularLandmarkDetection(imageFilePath) {
     const [result] = await client.landmarkDetection(imageFilePath);
     const geoCoords = result.locations.latlng;
     const devCoords = getCurrentLocation;
-    const temp = {geoCoords.latitude , geoCoords.longitude}
+    const temp = {latitude: geoCoords.latitude , longitude: geoCoords.longitude}
     const dist = geolocation.headingDistanceTo(temp,devCoords);
     if(result.landmarkAnnotations.score < .25) {
         return false
