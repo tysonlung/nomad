@@ -5,11 +5,14 @@ from skimage.metrics import structural_similarity as ssim
 from skimage.metrics import mean_squared_error
 from PIL import Image
 from io import BytesIO
+from google.cloud import storage
 import json
 import sys
+import numpy as np
+import requests
 
 from skimage.metrics import structural_similarity as ssim
-from skimage.metrics import mean_squared_error
+
 
 app = Flask(__name__)
 
@@ -25,14 +28,21 @@ def calculateSimilarity():
     args = request.args.to_dict()
     encodeImage = args['image']
 
-    recImage = decode_image(encodeImage);
+    recImage = decode_image(encodeImage)
+    new_image = recImage.resize((500, 500))
+    image1array = np.array(new_image)
 
+    gcpLink = args['link']
+    response = requests.get(gcpLink)
+    secondImage = Image.open(BytesIO(response.content))
+    new_image_2 = secondImage.resize((500,500))
+    image2array = np.array(new_image_2)
     
-    m = mean_squared_error(recImage, image02) 
-    s = ssim(recImage, image02)
+    s = ssim(image1array, image2array) 
 
-
-    print(returnDict, file=sys.stderr)
+    returnDict ={}
+    returnDict['similarity'] = s
+    
     returnJson = json.dumps(returnDict)
     
     return returnJson
