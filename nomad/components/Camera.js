@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
   },
   imageListContainer: {
     position: 'absolute',
-    bottom: 120,
+    bottom: 170,
     left: 0,
     right: 0,
   },

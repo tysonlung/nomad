@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import Nav from "./Nav";
 
 export default function Profile({ route }) {
@@ -28,14 +28,14 @@ export default function Profile({ route }) {
       <Text style={styles.text}>This is your gallery page{"\n"}</Text>
 
       <Text style={styles.text}>Captured Images:</Text>
-      <View>
+      <ScrollView>
         {capturedImages.map((image, index) => (
           <View key={index} style={styles.imageItem}>
             <Text style={styles.imageText}>{image.filename}</Text>
             <Image source={{ uri: image.uri }} style={styles.capturedImage} />
           </View>
         ))}
-      </View>
+      </ScrollView>
     </View>
   );
 }
