@@ -77,7 +77,7 @@ export default function CameraComponent({ navigation, route }) {
             <Circle name="circle" size={65} color="white" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={exitCamera}>
-            <Ionicons name="close" size={24} color="black" />
+            <Ionicons name="reorder-three" size={25} color="black" />
           </TouchableOpacity>
         </View>
       </Camera>
