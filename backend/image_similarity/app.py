@@ -45,7 +45,7 @@ def calculateSimilarity():
     
     returnJson = json.dumps(returnDict)
     
-    return returnJson
+    return returnJson,200
 
 
 def decode_image(image_data):
