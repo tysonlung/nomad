@@ -9,7 +9,7 @@ const Post = ({ post }) => {
         <Text style={styles.coords}>{post.coords}</Text>
       </View>
       <Text style={styles.description}>{post.description}</Text>
-      <Image source={{ uri: post.imageuri }} style={styles.postImage} />
+      <Image source={{ uri: "https://storage.googleapis.com/nomad_posts/" + post.imageuri }}  style={styles.postImage} />
       <View style={styles.interactions}>
         <TouchableOpacity>
           <Text style={styles.likes}>{post.likes} Likes</Text>

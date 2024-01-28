@@ -3,6 +3,8 @@ import React, { useState, useRef } from 'react';
 import { Camera } from 'expo-camera';
 import { TouchableOpacity, View, StyleSheet, Text, Image, FlatList } from 'react-native';
 import Circle from "react-native-vector-icons/Entypo";
+import Feather from "react-native-vector-icons/Feather";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import Nav from './Nav'; // Import the Nav component
 
 export default function CameraComponent({ navigation, route }) {
@@ -28,7 +30,7 @@ export default function CameraComponent({ navigation, route }) {
       </View>
     );
   }
-  
+
 
   const takePicture = async () => {
     if (cameraRef.current) {
@@ -69,13 +71,13 @@ export default function CameraComponent({ navigation, route }) {
       <Camera style={styles.camera} type={type} ref={cameraRef}>
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
-            <Text style={styles.text}>Flip Camera</Text>
+            <Feather name = "rotate-ccw" size={24} color="black" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.circleButton} onPress={takePicture}>
             <Circle name="circle" size={65} color="white" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={exitCamera}>
-            <Text style={styles.text}>Go to Gallery</Text>
+            <Ionicons name="close" size={24} color="black" />
           </TouchableOpacity>
         </View>
       </Camera>
