@@ -9,8 +9,10 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@google-cloud/vision": "^4.0.3",
     "expo": "~50.0.4",
     "expo-status-bar": "~1.11.1",
+    "geolocation-utils": "^1.2.5",
     "mongoose": "^8.1.1",
     "react": "18.2.0",
     "react-native": "0.73.2"
