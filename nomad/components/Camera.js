@@ -3,6 +3,8 @@ import React, { useState, useRef } from 'react';
 import { Camera } from 'expo-camera';
 import { TouchableOpacity, View, StyleSheet, Text, Image, FlatList } from 'react-native';
 import Circle from "react-native-vector-icons/Entypo";
+import Feather from "react-native-vector-icons/Feather";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import Nav from './Nav'; // Import the Nav component
 
 export default function CameraComponent({ navigation, route }) {
@@ -29,6 +31,7 @@ export default function CameraComponent({ navigation, route }) {
     );
   }
 
+
   const takePicture = async () => {
     if (cameraRef.current) {
       const { uri } = await cameraRef.current.takePictureAsync();
@@ -36,6 +39,7 @@ export default function CameraComponent({ navigation, route }) {
 
       // Format the filename
       const filename = `${username}-${location.latitude}-${location.longitude}.jpg`;
+      console.log(filename);
 
       setCapturedImages(prevImages => [...prevImages, { uri, filename }]);
     }
@@ -63,18 +67,27 @@ export default function CameraComponent({ navigation, route }) {
     };
   };
 
+  const removeImage = (indexToRemove) => {
+    setCapturedImages((prevImages) => {
+      const newImages = [...prevImages];
+      newImages.splice(indexToRemove, 1);
+      return newImages;
+    });
+  };
+
   return (
     <View style={styles.container}>
       <Camera style={styles.camera} type={type} ref={cameraRef}>
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
-            <Text style={styles.text}>Flip Camera</Text>
+            <Feather name="rotate-ccw" size={24} color="black" />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.circleButton} onPress={takePicture}>
+          <TouchableOpacity style={styles.circleButton} onPress={() => {takePicture
+          console.log("picture taken")}}>
             <Circle name="circle" size={65} color="white" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={exitCamera}>
-            <Text style={styles.text}>Go to Gallery</Text>
+            <Ionicons name="reorder-three" size={25} color="black" />
           </TouchableOpacity>
         </View>
       </Camera>
@@ -84,15 +97,20 @@ export default function CameraComponent({ navigation, route }) {
             horizontal
             data={capturedImages}
             keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item }) => (
+            renderItem={({ item, index }) => (
               <View style={styles.imageItem}>
+                <TouchableOpacity
+                  style={styles.removeButton}
+                  onPress={() => removeImage(index)}
+                >
+                  <Circle name="cross" size={24} color="black" />
+                </TouchableOpacity>
                 <Image source={{ uri: item.uri }} style={styles.capturedImage} />
               </View>
             )}
           />
         </View>
       )}
-      {/* Include the Nav component in place of the "Go to Explore" button */}
       <Nav navigation={navigation} />
     </View>
   );
@@ -147,5 +165,14 @@ const styles = StyleSheet.create({
   },
   imageText: {
     fontSize: 12,
+  },
+  removeButton: {
+    position: 'absolute',
+    top: 5,
+    right: 5,
+    zIndex: 1,
+    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    borderRadius: 50,
+    padding: 2,
   },
 });

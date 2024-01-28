@@ -2,6 +2,9 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import Nav from "./Nav";
 
+
+
+
 export default function Profile({ route }) {
   // Check if route.params is defined
   if (!route.params) {
