@@ -8,7 +8,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import Nav from './Nav'; // Import the Nav component
 
 export default function CameraComponent({ navigation, route }) {
-  const username = "Temp"; // Assuming you receive the username as a parameter
+  const username = "John_Doe"; // Assuming you receive the username as a parameter
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [permission, requestPermission] = Camera.useCameraPermissions();
   const [capturedImages, setCapturedImages] = useState([]);
