@@ -2,59 +2,6 @@ const mongoose = require("mongoose");
 const User = require("./models/user");
 const Post = require("./models/post");
 const express = require("express");
-const { Storage } = require("@google-cloud/storage");
-const bucketName = "slutty-whores";
-projectid = "cum-sluts";
-path = require("path");
-keyFilePath = "./cum-sluts-2b7dc8063bc5.json";
-
-//function for adding images
-const authenticateImplicitWithAdc = async () => {
-  const storage = new Storage({
-    keyFilename: keyFilePath,
-  });
-  const bucket = storage.bucket(bucketName);
-  let fileCount = 0;
-  const options = {
-    prefix: "tempUser/india052024/",
-  };
-  try {
-    const [files] = await bucket.getFiles(options);
-    console.log("these are all the files" + files);
-    fileCount = files.length;
-    console.log("there are " + fileCount + " files ");
-  } catch (error) {
-    console.error("Error counting files", error);
-    throw error;
-  }
-};
-const uploadImage = async (userName, country, mm, yyyy, link) => {
-  const storage = new Storage();
-  console.log("uploading image");
-  const bucket = storage.bucket(bucketName);
-  let fileCount = 0;
-  const options = {
-    prefix: userName + "/" + country + mm + yyyy + "/",
-  };
-  try {
-    const [files] = await bucket.getFiles(options);
-    fileCount = files.length;
-    console.log("there are " + fileCount + " files ");
-  } catch (error) {
-    console.error("Error counting files", error);
-    throw error;
-  }
-  const fileName = userName + "/" + country + mm + yyyy + "/" + fileCount;
-  //given the link to an image stored locally upload it to the cloud under the name fileCount
-  const file = bucket.file(fileName);
-  try {
-    await file.save(link);
-  } catch (error) {
-    console.error("Error uploading file", error);
-    throw error;
-  }
-};
-
 const app = express();
 app.use(express.json());
 
@@ -67,7 +14,8 @@ app.use((req, res, next) => {
 app.get("/", (req, res) => {
   console.log("request sent");
   res.send("Hello World!");
-  uploadImage("tempUser", "india", "05", "2024", "");
+  
+  uploadImage("tempUser", "india", "05", "2024", "./images/test.png");
 });
 //get all users
 app.get("/users", (req, res) => {
