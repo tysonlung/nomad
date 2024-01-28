@@ -66,12 +66,20 @@ export default function CameraComponent({ navigation, route }) {
     };
   };
 
+  const removeImage = (indexToRemove) => {
+    setCapturedImages((prevImages) => {
+      const newImages = [...prevImages];
+      newImages.splice(indexToRemove, 1);
+      return newImages;
+    });
+  };
+
   return (
     <View style={styles.container}>
       <Camera style={styles.camera} type={type} ref={cameraRef}>
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
-            <Feather name = "rotate-ccw" size={24} color="black" />
+            <Feather name="rotate-ccw" size={24} color="black" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.circleButton} onPress={takePicture}>
             <Circle name="circle" size={65} color="white" />
@@ -87,15 +95,20 @@ export default function CameraComponent({ navigation, route }) {
             horizontal
             data={capturedImages}
             keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item }) => (
+            renderItem={({ item, index }) => (
               <View style={styles.imageItem}>
+                <TouchableOpacity
+                  style={styles.removeButton}
+                  onPress={() => removeImage(index)}
+                >
+                  <Circle name="cross" size={24} color="black" />
+                </TouchableOpacity>
                 <Image source={{ uri: item.uri }} style={styles.capturedImage} />
               </View>
             )}
           />
         </View>
       )}
-      {/* Include the Nav component in place of the "Go to Explore" button */}
       <Nav navigation={navigation} />
     </View>
   );
@@ -150,5 +163,14 @@ const styles = StyleSheet.create({
   },
   imageText: {
     fontSize: 12,
+  },
+  removeButton: {
+    position: 'absolute',
+    top: 5,
+    right: 5,
+    zIndex: 1,
+    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    borderRadius: 50,
+    padding: 2,
   },
 });
