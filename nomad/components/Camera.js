@@ -39,6 +39,7 @@ export default function CameraComponent({ navigation, route }) {
 
       // Format the filename
       const filename = `${username}-${location.latitude}-${location.longitude}.jpg`;
+      console.log(filename);
 
       setCapturedImages(prevImages => [...prevImages, { uri, filename }]);
     }
@@ -81,7 +82,8 @@ export default function CameraComponent({ navigation, route }) {
           <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
             <Feather name="rotate-ccw" size={24} color="black" />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.circleButton} onPress={takePicture}>
+          <TouchableOpacity style={styles.circleButton} onPress={() => {takePicture
+          console.log("picture taken")}}>
             <Circle name="circle" size={65} color="white" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={exitCamera}>

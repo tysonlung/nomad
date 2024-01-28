@@ -2,10 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Image , ScrollView} from 'react-native';
 import Nav from "./Nav";
 import Post from "./Post";
-
-export default function Profile({ navigation }) {
-  // Check if route.params is defined
-  const postList = [
+export const profilePosts = [
     {
       user: "John Doe",
       description: "Exploring the Arc de Triomphe!",
@@ -43,11 +40,14 @@ export default function Profile({ navigation }) {
       imageuri: "operagarnier.png",
     },
   ];
+export default function Profile({ navigation }) {
+  // Check if route.params is defined
+  
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Welcome Back John Doe{"\n"}</Text>
       <ScrollView>
-        {postList.map((post, index) => (
+        {profilePosts.map((post, index) => (
           console.log(post),
           <Post key={index} post={post} />
         ))}

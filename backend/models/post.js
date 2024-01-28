@@ -4,8 +4,8 @@ const postSchema = new Schema(
   {
     user: { type: String, required: true },
     description: { type: String, required: false },
-    imageNameInGCB: { type: String, required: false },
-    location : { type: String, required: false },
+    imageuri: { type: String, required: false },
+    coords : { type: String, required: false },
     likes: { type: Number, required: false, default: 0},
     createdAt: { type: Date, required: false , default: Date.now},
     
