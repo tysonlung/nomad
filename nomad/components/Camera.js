@@ -28,6 +28,7 @@ export default function CameraComponent({ navigation, route }) {
       </View>
     );
   }
+  
 
   const takePicture = async () => {
     if (cameraRef.current) {
