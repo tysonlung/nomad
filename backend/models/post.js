@@ -4,7 +4,7 @@ const postSchema = new Schema(
   {
     user: { type: String, required: true },
     description: { type: String, required: false },
-    imagelink: { type: String, required: false },
+    imageFolderLink: { type: String, required: false },
     likes: { type: Number, required: false },
     createdAt: { type: Date, required: false , default: Date.now},
     
