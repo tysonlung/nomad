@@ -33,6 +33,7 @@ export default function CameraComponent({ navigation, route }) {
 
 
   const takePicture = async () => {
+    console.log('Taking picture...');
     if (cameraRef.current) {
       const { uri } = await cameraRef.current.takePictureAsync();
       const location = await getLocation(); // Assuming you have a function to get the location
@@ -82,8 +83,7 @@ export default function CameraComponent({ navigation, route }) {
           <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
             <Feather name="rotate-ccw" size={24} color="black" />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.circleButton} onPress={() => {takePicture
-          console.log("picture taken")}}>
+          <TouchableOpacity style={styles.circleButton} onPress={takePicture}>
             <Circle name="circle" size={65} color="white" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={exitCamera}>
