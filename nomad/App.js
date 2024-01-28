@@ -4,6 +4,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import CameraComponent from './components/Camera';
 import Profile from './components/Profile'; // Make sure you have the correct path to the Profile component
 import Explore from './components/Explore'; // Make sure you have the correct path to the Explore component
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View } from 'react-native';
+import Nav from './components/Nav.js';
 
 
 const Stack = createStackNavigator();
