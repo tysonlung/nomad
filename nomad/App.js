@@ -7,6 +7,7 @@ import Explore from './components/Explore'; // Make sure you have the correct pa
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import Nav from './components/Nav.js';
+import Gallery from './components/Gallery.js';
 
 
 const Stack = createStackNavigator();
@@ -18,6 +19,7 @@ export default function App() {
         <Stack.Screen name="Explore" component={Explore} />
         <Stack.Screen name="Camera" component={CameraComponent} />
         <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="Gallery" component={Gallery} />
       </Stack.Navigator>
     </NavigationContainer>
   );

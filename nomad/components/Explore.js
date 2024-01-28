@@ -5,11 +5,7 @@ import Nav from './Nav';
 export default function Explore({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text>You fuckin suck</Text>
-      <Button
-        title="Go to Camera"
-        onPress={() => navigation.navigate('Camera')}
-      />
+      <Text>This is the explore page</Text>
     <Nav navigation={navigation}/>
     </View>
   );

@@ -1,7 +1,8 @@
+// CameraComponent.js
 import React, { useState, useRef } from 'react';
 import { Camera } from 'expo-camera';
-import { Button, FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import Circle from "react-native-vector-icons/Entypo"
+import { TouchableOpacity, View, StyleSheet, Text, Image, FlatList } from 'react-native';
+import Circle from "react-native-vector-icons/Entypo";
 import Nav from './Nav'; // Import the Nav component
 
 export default function CameraComponent({ navigation, route }) {
@@ -21,7 +22,9 @@ export default function CameraComponent({ navigation, route }) {
     return (
       <View style={styles.container}>
         <Text style={{ textAlign: 'center' }}>We need your permission to show the camera</Text>
-        <Button onPress={requestPermission} title="Grant Permission" />
+        <TouchableOpacity onPress={requestPermission} style={styles.button}>
+          <Text style={styles.text}>Grant Permission</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -43,8 +46,8 @@ export default function CameraComponent({ navigation, route }) {
   }
 
   function exitCamera() {
-    // Navigate to the Profile screen when the "Exit Camera" button is pressed
-    navigation.navigate('Profile', { capturedImages });
+    // Navigate to the Gallery screen when the "Exit Camera" button is pressed
+    navigation.navigate('Gallery', { capturedImages });
   }
 
   function goToExplore() {
@@ -62,9 +65,6 @@ export default function CameraComponent({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      {/* <View style={styles.buttonContainerTop}>
-        <Button title="Go to Explore" onPress={goToExplore} />
-      </View> */}
       <Camera style={styles.camera} type={type} ref={cameraRef}>
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
@@ -74,7 +74,7 @@ export default function CameraComponent({ navigation, route }) {
             <Circle name="circle" size={65} color="white" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={exitCamera}>
-            <Text style={styles.text}>Exit Camera</Text>
+            <Text style={styles.text}>Go to Gallery</Text>
           </TouchableOpacity>
         </View>
       </Camera>
@@ -99,57 +99,53 @@ export default function CameraComponent({ navigation, route }) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-    },
-    camera: {
-      flex: 1,
-    },
-    buttonContainerTop: {
-      paddingHorizontal: 20,
-      paddingTop: 20,
-    },
-    buttonContainer: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'flex-end', // Align items to the bottom
-      position: 'absolute',
-      bottom: 20, // Adjust this value for vertical positioning
-      left: 0,
-      right: 0,
-      margin: 20,
-    },
-    circleButton: {
-      borderRadius: 50,
-      padding: 20,
-    },
-    button: {
-      backgroundColor: 'rgba(255,255,255,0.7)',
-      borderRadius: 5,
-      padding: 10,
-    },
-    text: {
-      fontSize: 16,
-      fontWeight: 'bold',
-      color: 'black',
-    },
-    imageListContainer: {
-      position: 'absolute',
-      bottom: 120, // Adjust this value to avoid overlap
-      left: 0,
-      right: 0,
-    },
-    imageItem: {
-      marginHorizontal: 5,
-      alignItems: 'center',
-    },
-    capturedImage: {
-      width: 100,
-      height: 100,
-      marginBottom: 5,
-    },
-    imageText: {
-      fontSize: 12,
-    },
-  });
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  camera: {
+    flex: 1,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    position: 'absolute',
+    bottom: 20,
+    left: 0,
+    right: 0,
+    margin: 20,
+  },
+  circleButton: {
+    borderRadius: 50,
+    padding: 20,
+  },
+  button: {
+    backgroundColor: 'rgba(255,255,255,0.7)',
+    borderRadius: 5,
+    padding: 10,
+  },
+  text: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: 'black',
+  },
+  imageListContainer: {
+    position: 'absolute',
+    bottom: 120,
+    left: 0,
+    right: 0,
+  },
+  imageItem: {
+    marginHorizontal: 5,
+    alignItems: 'center',
+  },
+  capturedImage: {
+    width: 100,
+    height: 100,
+    marginBottom: 5,
+  },
+  imageText: {
+    fontSize: 12,
+  },
+});
