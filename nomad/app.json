@@ -1,5 +1,13 @@
 {
   "expo": {
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(App.js) to access your camera."
+        }
+      ]
+    ],
     "name": "nomad",
     "slug": "nomad",
     "version": "1.0.0",
